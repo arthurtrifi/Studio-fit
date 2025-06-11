@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Fitness</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    html {
+      scroll-behavior: smooth; /* Scroll suave */
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #000;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #111;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      color: #ff0000;
+      font-size: 28px;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ff0000;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('pexels-marcuschanmedia-18060076.jpg') no-repeat center/cover;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .hero-content {
+      max-width: 500px;
+      background: rgba(255, 0, 0, 0.432);
+      padding: 40px 30px;
+      border-radius: 15px;
+      animation: fadeIn 1s ease;
+      box-shadow: 0 4px 15px rgba(255,0,0,0.5);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-content h2 {
+      margin-bottom: 25px;
+      font-size: 2.2rem;
+      color: #fff;
+    }
+
+    form input, form textarea, form button {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    form input, form textarea {
+      background: #fff;
+      color: #000;
+    }
+
+    form button {
+      background: #ff0000;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    form button:hover {
+      background: #000;
+      color: #ff0000;
+    }
+
+    section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    section h2 {
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    #contato iframe {
+      width: 100%;
+      max-width: 600px;
+      height: 400px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: #fff;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 24px;
+      box-shadow: 0 4px 15px rgba(37,211,102,0.6);
+      text-decoration: none;
+      animation: bounce 2s infinite;
+      transition: transform 0.3s, box-shadow 0.3s;
+      z-index: 1001;
+    }
+
+    .whatsapp-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(37,211,102,0.8);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @media (max-width: 600px) {
+      .hero-content {
+        padding: 25px 20px;
+      }
+      header h1 {
+        font-size: 24px;
+      }
+    }
+  </style>
+
+  <script>
+    function enviarParaWhatsApp(event) {
+      event.preventDefault();
+      const nome = document.querySelector('[name="name"]').value;
+      const telefone = document.querySelector('[name="phone"]').value;
+      const email = document.querySelector('[name="email"]').value;
+      const objetivo = document.querySelector('[name="objective"]').value;
+
+      const mensagem = `Olá! Meu nome é ${nome}.\nTelefone: ${telefone}\nEmail: ${email}\nObjetivo: ${objetivo}`;
+      const url = `https://api.whatsapp.com/send?phone=558896380436&text=${encodeURIComponent(mensagem)}`;
+
+      window.open(url, '_blank');
+    }
+  </script>
+</head>
+
+<body>
+
+<header>
+  <h1>FITNESS</h1>
+  <nav>
+    <a href="#sobre">Sobre</a>
+    <a href="#programas">Programas</a>
+    <a href="#contato">Contato</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h2>Transforme seu corpo hoje</h2>
+    <form onsubmit="enviarParaWhatsApp(event)">
+      <input type="text" name="name" placeholder="Nome" required>
+      <input type="tel" name="phone" placeholder="Telefone" required>
+      <input type="email" name="email" placeholder="E-mail" required>
+      <textarea name="objective" rows="2" placeholder="Seu objetivo"></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+</section>
+
+
+
+<section id="programas">
+  <h2>Programas de Treino</h2>
+  <p>Musculação • Funcional • HIIT • Personal Trainer • Grupos de Treino</p>
+</section>
+
+<section id="contato">
+  <h2>Onde Estamos</h2>
+  <p>Visite nossa unidade e comece hoje mesmo!</p>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d247.37721357968306!2d-39.29929740604767!3d-7.23680004428339!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1spt-BR!2sbr!4v1745703934661!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>
+
+<a href="https://api.whatsapp.com/send?phone=558896380436" class="whatsapp-button" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+</body>
+</html>
